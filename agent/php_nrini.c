@@ -716,6 +716,24 @@ static PHP_INI_MH(nr_daemon_pidfile_mh) {
   return SUCCESS;
 }
 
+static PHP_INI_MH(nr_daemon_app_limit_mh) {
+  int val;
+
+  (void)entry;
+  (void)NEW_VALUE_LEN;
+  (void)mh_arg1;
+  (void)mh_arg2;
+  (void)mh_arg3;
+  (void)stage;
+  NR_UNUSED_TSRMLS;
+
+  if (NEW_VALUE_LEN > 0) {
+    val = (int)strtol(NEW_VALUE, 0, 10);
+    NR_PHP_PROCESS_GLOBALS(daemon_app_limit) = val;
+  }
+  return SUCCESS;
+}
+
 static PHP_INI_MH(nr_daemon_app_timeout_mh) {
   const char* local_new_value = NULL;
   (void)entry;
@@ -1891,6 +1909,11 @@ PHP_INI_ENTRY_EX("newrelic.daemon.dont_launch",
                  "",
                  NR_PHP_SYSTEM,
                  nr_daemon_dont_launch_mh,
+                 0)
+PHP_INI_ENTRY_EX("newrelic.daemon.app_limit",
+                 "",
+                 NR_PHP_SYSTEM,
+                 nr_daemon_app_limit_mh,
                  0)
 PHP_INI_ENTRY_EX("newrelic.daemon.app_timeout",
                  "",

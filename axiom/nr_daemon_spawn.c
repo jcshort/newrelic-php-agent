@@ -113,6 +113,11 @@ nr_argv_t* nr_daemon_args_to_argv(const char* name,
     nr_argv_append_flag(argv, "--proxy", args->proxy);
     nr_argv_append_flag(argv, "--wait-for-port", args->start_timeout);
 
+    if (args->app_limit) {
+      nr_argv_append_flag(argv, "--define", "app_limit=%s",
+                          args->app_limit);
+    }
+
     if (args->app_timeout && ('\0' != args->app_timeout[0])) {
       nr_argv_append_flag(argv, "--define", "app_timeout=%s",
                           args->app_timeout);

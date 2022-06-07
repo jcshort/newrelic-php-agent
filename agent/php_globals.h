@@ -28,6 +28,7 @@ typedef struct _nrphpglobals_t {
   char* daemon_logfile;     /* Daemon log file */
   char* daemon_loglevel;    /* Daemon log level */
   char* daemon_auditlog;    /* Daemon audit log file name (if any) */
+  int daemon_app_limit;     /* Daemon active application limit */
   char* daemon_app_timeout; /* Daemon application inactivity timeout */
   nrtime_t
       daemon_app_connect_timeout; /* Daemon application connection timeout */

@@ -512,6 +512,7 @@ PHP_MINIT_FUNCTION(newrelic) {
       daemon_args.logfile = NR_PHP_PROCESS_GLOBALS(daemon_logfile);
       daemon_args.loglevel = NR_PHP_PROCESS_GLOBALS(daemon_loglevel);
       daemon_args.auditlog = NR_PHP_PROCESS_GLOBALS(daemon_auditlog);
+      daemon_args.app_limit = NR_PHP_PROCESS_GLOBALS(daemon_app_limit);
       daemon_args.app_timeout = NR_PHP_PROCESS_GLOBALS(daemon_app_timeout);
       daemon_args.integration_mode
           = NR_PHP_PROCESS_GLOBALS(daemon_special_integration);

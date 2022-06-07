@@ -90,6 +90,7 @@ type ProcessorConfig struct {
 	Client          collector.Client
 	IntegrationMode bool
 	UtilConfig      utilization.Config
+	AppLimit        int
 	AppTimeout      time.Duration
 }
 
@@ -348,9 +349,9 @@ func (p *Processor) processAppInfo(m AppInfoMessage) {
 		return
 	}
 
-	if len(p.apps) > limits.AppLimit {
+	if len(p.apps) > p.cfg.AppLimit {
 		log.Errorf("unable to add app '%s', limit of %d applications reached",
-			m.Info, limits.AppLimit)
+			m.Info, p.cfg.AppLimit)
 		return
 	}
 

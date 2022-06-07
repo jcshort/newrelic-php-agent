@@ -217,6 +217,20 @@ static void test_integration_mode_disabled(void) {
   nr_free(argv);
 }
 
+static void test_app_limit(void) {
+  nr_argv_t* argv;
+  nr_daemon_args_t args;
+
+  nr_memset(&args, 0, sizeof(args));
+  args.app_limit = 250;
+  argv = nr_daemon_args_to_argv("newrelic-daemon", &args);
+
+  pass_if_argv_has_flag(argv, "app_limit=250");
+
+  nr_argv_destroy(argv);
+  nr_free(argv);
+}
+
 static void test_app_timeout(void) {
   nr_argv_t* argv;
   nr_daemon_args_t args;
@@ -399,6 +413,7 @@ void test_main(void* p NRUNUSED) {
   test_daemon_address();
   test_integration_mode_enabled();
   test_integration_mode_disabled();
+  test_app_limit();
   test_app_timeout();
   test_start_timeout();
 

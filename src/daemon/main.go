@@ -248,6 +248,7 @@ type Config struct {
 	CAPath             string         `config:"ssl_ca_path"`                    // Path to a directory of root CA certificates.
 	CAFile             string         `config:"ssl_ca_bundle"`                  // Path to a file containing a bundle of root CA certificates.
 	IntegrationMode    bool           `config:"-"`                              // Whether to log integration test output
+	AppLimit           int            `config:"app_limit"`                      // Concurrent application limit.
 	AppTimeout         config.Timeout `config:"app_timeout"`                    // Inactivity timeout for applications.
 	WaitForPort        time.Duration  `config:"wait_for_port"`                  // How long to wait for the worker process to open a port.
 }
@@ -412,6 +413,7 @@ var (
 		DetectGCP:    true,
 		DetectPCF:    true,
 		DetectDocker: true,
+		AppLimit:     int(limits.DefaultAppLimit),
 		AppTimeout:   config.Timeout(limits.DefaultAppTimeout),
 	}
 )

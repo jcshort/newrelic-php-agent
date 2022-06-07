@@ -14,9 +14,9 @@ import (
 )
 
 const (
-	// AppLimit is the maximum number of applications that the daemon will
-	// support.  The agent's limit is in nr_app.h.
-	AppLimit                 = 250
+	// DefaultAppLimit is the default maximum number of applications that the
+	// daemon will support.  The agent's limit is in nr_app.h.
+	DefaultAppLimit          = 250
 	AppConnectAttemptBackoff = 30 * time.Second
 
 	// DefaultAppTimeout specifies the elapsed time after which an application
@@ -76,5 +76,4 @@ const (
 	// MinFlatbufferSize is the minimum size of a flatbuffers message (no agent
 	// run or message body). This should be updated when new fields are added.
 	MinFlatbufferSize = 12
-
 )

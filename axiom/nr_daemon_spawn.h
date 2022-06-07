@@ -34,6 +34,7 @@ typedef struct _nr_daemon_args_t {
   const char* tls_capath; /* use custom X509 certificates found by scanning this
                              directory  */
 
+  int app_limit;             /* active application limit */
   const char* app_timeout;   /* application inactivity timeout */
   const char* start_timeout; /* timeout for acquiring a socket */
 

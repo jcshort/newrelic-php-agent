@@ -335,13 +335,26 @@ newrelic.daemon.logfile = "/var/log/newrelic/newrelic-daemon.log"
 ;
 ;newrelic.daemon.utilization.detect_docker = true
 
+; Setting: newrelic.daemon.app_limit
+; Type   : integer
+; Scope  : system
+; Default: 250
+; Info   : Sets the maximum number of active applications handled by the daemon.
+;          Additional applications will be rejected once the limit is reached.
+;
+;          Applications are considered active if data is received within the
+;          app_timeout period.
+;
+;          Modifying this value will affect the amount of memory used by
+;          newrelic-daemon for buffering data.
+
 ; Setting: newrelic.daemon.app_timeout
 ; Type   : time specification string ("5m", "1h20m", etc)
 ; Scope  : system
 ; Default: 10m
 ; Info   : Sets the elapsed time after which an application will be considered
 ;          inactive. Inactive applications do not count against the maximum
-;          limit of 250 applications. Allowed units are "ns", "us", "ms", "s",
+;          application limit. Allowed units are "ns", "us", "ms", "s",
 ;          "m", and "h".
 ;
 ;          A value of 0 is interpreted as "no timeout". New applications with
